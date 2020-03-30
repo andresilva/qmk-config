@@ -112,7 +112,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                                   | Stop |Refrsh|    | Prev | Next |
  *                                            ,------|------|------|    |------+------+------.
  *                                            |Brwser|Brwser|Search|    |VolUp |      |      |
- *                                            |Back  | Fwd  |------|    |------| Stop | Play-|
+ *                                            |Back  | Fwd  |------|    |------| Mute | Play-|
  *                                            |      |      | Home |    |VolDn |      | Pause|
  *                                            `--------------------'    `--------------------'
  */
@@ -135,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_INS,  KC_DEL,   KC_NO,   KC_NO,   KC_NO,
     KC_MPRV, KC_MNXT,
     KC_VOLU,
-    KC_VOLD, KC_MSTP,  KC_MPLY
+    KC_VOLD, KC_MUTE,  KC_MPLY
 )
 };
 
