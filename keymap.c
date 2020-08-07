@@ -100,13 +100,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,---------------------------------------------------------------.    ,---------------------------------------------------------------.
  * |      |   F11   |   F12   |   F13   |   F14   |   F15   | Esc  |    | |||| |   F16   |   F17   |   F18   |   F19   |   F20   |      |
  * |------+---------+---------+---------+---------+----------------|    |------+---------+---------+---------+---------+---------+------|
- * |      |Shut Down| ||||||| |Mouse Up | ||||||| |Volume Up|Scroll|    |Scroll|PrintScrn|   Home  |    Up   |   PgUp  |   Mail  |      |
+ * |      | ||||||| | ||||||| |Mouse Up | ||||||| |Volume Up|Scroll|    |Scroll|PrintScrn|   Home  |    Up   |   PgUp  |   Mail  |      |
  * |------+---------+---------+---------+---------+---------|  Up  |    |  Up  |---------+---------+---------+---------+---------+------|
- * |      |  Sleep  |MouseLeft|MouseDown|MouseRght|Volume Dn|------|    |------| Num Lock|   Left  |   Down  |   Right | MyComp  |      |
+ * |      | ||||||| |MouseLeft|MouseDown|MouseRght|Volume Dn|------|    |------| Num Lock|   Left  |   Down  |   Right | MyComp  |      |
  * |------+---------+---------+---------+---------+---------|Scroll|    |Scroll|---------+---------+---------+---------+---------+------|
- * |      |  ||||   | ||||||| |MouseDown| ||||||| |  Mute   | Down |    | Down |  ||||   |   End   |   Down  |   PgDn  |  ||||   |      |
+ * |      | ||||||| | ||||||| |MouseDown| ||||||| |  Mute   | Down |    | Down | ||||||| |   End   |   Down  |   PgDn  | ||||||| |      |
  * `------+---------+---------+---------+---------+----------------'    `----------------+---------+---------+---------+---------+------'
- *  | ||| |  ||||   |  MClick | LClick  |  R Click|                                      |  Insert |   Del   |   ||||  |  ||||   | ||| |
+ *  | ||| | ||||||| |  MClick | LClick  |  R Click|                                      |  Insert |   Del   | ||||||| |  |||||| | ||| |
  *  `---------------------------------------------'                                      `---------------------------------------------'
  *                                                   ,-------------.    ,-------------.
  *                                                   | Stop |Refrsh|    | Prev | Next |
@@ -119,8 +119,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [MDIA] = LAYOUT_ergodox(
     // left hand
     KC_TRNS, KC_F11,   KC_F12,  KC_F13,   KC_F14,  KC_F15,  KC_ESC,
-    KC_TRNS, KC_POWER, KC_NO,   KC_MS_U,  KC_NO,   KC_VOLU, KC_WH_U,
-    KC_TRNS, KC_SLEP,  KC_MS_L, KC_MS_D,  KC_MS_R, KC_VOLD,
+    KC_TRNS, KC_NO,    KC_NO,   KC_MS_U,  KC_NO,   KC_VOLU, KC_WH_U,
+    KC_TRNS, KC_NO,    KC_MS_L, KC_MS_D,  KC_MS_R, KC_VOLD,
     KC_TRNS, KC_NO,    KC_NO,   KC_MS_D,  KC_NO,   KC_MUTE, KC_WH_D,
     KC_NO,   KC_NO,    KC_BTN3, KC_BTN1,  KC_BTN2,
                                                    KC_WSTP, KC_WREF,
