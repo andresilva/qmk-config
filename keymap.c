@@ -134,36 +134,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_MPRV, KC_MNXT,
     KC_VOLU,
     KC_VOLD, KC_MUTE,  KC_MPLY
-)
-};
+),
 
-// Runs just one time when the keyboard initializes.
-void matrix_init_user(void) {
-
-};
-
-// Runs constantly in the background, in a loop.
-void matrix_scan_user(void) {
-    // shift or caps lock turns on red light
-    if((keyboard_report->mods & MOD_BIT(KC_LSFT))
-    || (keyboard_report->mods & MOD_BIT(KC_RSFT))
-    || (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK))) {
-        ergodox_right_led_1_on();
-    } else {
-        ergodox_right_led_1_off();
-    }
-
-    // Symbol layer turns on green light
-    if(layer_state & (1UL<<SYMB)) {
-        ergodox_right_led_2_on();
-    } else {
-        ergodox_right_led_2_off();
-    }
-
-    // Media layer turns on blue light
-    if(layer_state & (1UL<<MDIA)) {
-        ergodox_right_led_3_on();
-    } else {
-        ergodox_right_led_3_off();
-    }
 };
