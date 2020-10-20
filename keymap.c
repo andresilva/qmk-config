@@ -1,8 +1,6 @@
 #include QMK_KEYBOARD_H
 
-#define BASE 0 // default layer
-#define SYMB 1 // symbols layer
-#define MDIA 2 // media layer
+#include "layers.h"
 
 /*
  * André Silva's Ergodox Infinity keyboard layout.
