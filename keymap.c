@@ -1,16 +1,17 @@
+/*
+ * André Silva's Ergodox Infinity keyboard layout.
+ *
+ */
 #include QMK_KEYBOARD_H
 
 #include "layers.h"
 #include "visualizer/lcd_backlight.h"
 
+#define LCD_BACKLIGHT_IDLE_TIMEOUT 300
+
 static uint32_t idle_timer;
 static bool is_idle;
 
-#define LCD_BACKLIGHT_IDLE_TIMEOUT 300
-
-/*
- * André Silva's Ergodox Infinity keyboard layout.
- */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /******* Base Layer ****************************************************************************************************
