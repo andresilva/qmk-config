@@ -27,7 +27,8 @@ static void get_visualizer_layer_and_color(visualizer_state_t* state) {
 
     if ((state->status.mods & MOD_BIT(KC_LSFT))
         || (state->status.mods & MOD_BIT(KC_RSFT))
-        || (state->status.leds & (1<<USB_LED_CAPS_LOCK))) {
+        || (state->status.leds & (1<<USB_LED_CAPS_LOCK)))
+    {
         strcat(text, " [SFT]");
         color = LCD_COLOR(212, 255, 255);
     }
