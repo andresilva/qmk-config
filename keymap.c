@@ -4,8 +4,9 @@
  */
 #include QMK_KEYBOARD_H
 
+#include <string.h>
+#include "default_animations.h"
 #include "layers.h"
-#include "visualizer/visualizer.h"
 
 #define LCD_BACKLIGHT_IDLE_TIMEOUT 300
 
@@ -144,6 +145,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 };
+
+void matrix_init_user() {
+    // disable QMK logo animation
+    memset(
+        default_startup_animation.frame_lengths,
+        0,
+        sizeof(default_startup_animation.frame_lengths)
+    );
+}
 
 void matrix_scan_user() {
     if (is_keyboard_master()) {
