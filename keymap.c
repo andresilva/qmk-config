@@ -5,7 +5,7 @@
 #include QMK_KEYBOARD_H
 
 #include "layers.h"
-#include "visualizer/lcd_backlight.h"
+#include "visualizer/visualizer.h"
 
 #define LCD_BACKLIGHT_IDLE_TIMEOUT 300
 
@@ -146,26 +146,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 void matrix_scan_user() {
-    // check the timer only if the keyboard is not idle
-    if (!is_idle) {
-        if (timer_elapsed32(idle_timer) >= LCD_BACKLIGHT_IDLE_TIMEOUT * 1000) {
-            is_idle = true;
+    if (is_keyboard_master()) {
+        // check the timer only if the keyboard is not idle
+        if (!is_idle) {
+            if (timer_elapsed32(idle_timer) >= LCD_BACKLIGHT_IDLE_TIMEOUT * 1000) {
+                is_idle = true;
 
-            // disable LCD backlight
-            lcd_backlight_brightness(0);
+                // disable LCD display
+                visualizer_suspend();
+            }
         }
     }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // reset idle timer on each keypress
-    idle_timer = timer_read32();
+    if (is_keyboard_master()) {
+        // reset idle timer on each keypress
+        idle_timer = timer_read32();
 
-    if (is_idle) {
-        is_idle = false;
+        if (is_idle) {
+            is_idle = false;
 
-        // re-enable LCD backlight
-        lcd_backlight_brightness(255);
+            // re-enable LCD display
+            visualizer_resume();
+        }
     }
 
     return true;
