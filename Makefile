@@ -3,7 +3,7 @@ clean:
 	rm -f qmk_firmware/layouts/community/planck_mit/andresilva
 	qmk_firmware/bin/qmk clean
 
-link: clean
+link:
 	ln -s ../../../../ergodox qmk_firmware/layouts/community/ergodox/andresilva
 	ln -s ../../../../planck qmk_firmware/layouts/community/planck_mit/andresilva
 
