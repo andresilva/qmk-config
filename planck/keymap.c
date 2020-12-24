@@ -2,13 +2,7 @@
 
 #include QMK_KEYBOARD_H
 
-enum layers {
-  BASE,
-  SYMB,
-  NUM,
-  FN,
-  NAV,
-};
+#include "layers.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
