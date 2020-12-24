@@ -4,7 +4,7 @@ clean:
 	rm -f qmk_firmware/layouts/community/ergodox/andresilva
 
 link: clean
-	ln -s ../../../../ qmk_firmware/layouts/community/ergodox/andresilva
+	ln -s ../../../../ergodox qmk_firmware/layouts/community/ergodox/andresilva
 
 build: link
 	qmk_firmware/bin/qmk compile -kb ergodox_infinity -km andresilva
