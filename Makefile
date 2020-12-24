@@ -1,6 +1,7 @@
 clean:
 	rm -f qmk_firmware/layouts/community/ergodox/andresilva
 	rm -f qmk_firmware/layouts/community/planck_mit/andresilva
+	qmk_firmware/bin/qmk clean
 
 link: clean
 	ln -s ../../../../ergodox qmk_firmware/layouts/community/ergodox/andresilva
