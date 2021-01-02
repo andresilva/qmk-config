@@ -14,7 +14,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
 // │Tab│ Q │ W │ E │ R │ T │ Y │ U │ I │ O │ P │Bsp│
 // ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
-// │Ctl│ A │ S │ D │ F │ G │ H │ J │ K │ L │ ; │Ent│
+// │Ctl│ A │ S │ D │ F │ G │ H │ J │ K │ L │ ; │ ' │
 // ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
 // │Sft│ Z │ X │ C │ V │ B │ N │ M │ , │ . │ / │Sft│
 // ├───┼───┼───┼───┼───┼───┴───┼───┼───┼───┼───┼───┤
@@ -22,7 +22,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // └───┴───┴───┴───┴───┴───────┴───┴───┴───┴───┴───┘
 [BASE] = LAYOUT_planck_mit(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
+    KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
     MO(FN),  _______, KC_LGUI, KC_LALT, SYMB_BSPC,   KC_SPC,       NUM_ENT, KC_RALT, _______, _______, MO(NAV)
 ),
@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
 // │   │ ! │ @ │ # │ $ │ % │ ^ │ & │ * │ ( │ ) │   │
 // ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
-// │   │ ~ │ | │   │   │   │   │ { │ } │ [ │ ] │ ' │
+// │   │ ~ │ | │   │   │   │   │ { │ } │ [ │ ] │   │
 // ├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
 // │   │   │   │   │   │   │   │   │   │   │ \ │   │
 // ├───┼───┼───┼───┼───┼───┴───┼───┼───┼───┼───┼───┤
@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // └───┴───┴───┴───┴───┴───────┴───┴───┴───┴───┴───┘
 [SYMB] = LAYOUT_planck_mit(
     _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______,
-    _______, KC_TILD, KC_PIPE, _______, _______, _______, _______, LBRACE,  RBRACE,  KC_LBRC, KC_RBRC, KC_QUOT,
+    _______, KC_TILD, KC_PIPE, _______, _______, _______, _______, LBRACE,  RBRACE,  KC_LBRC, KC_RBRC, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_BSLS, _______,
     _______, _______, _______, _______, _______,     KC_RALT,      _______, _______, _______, _______, _______
 ),
