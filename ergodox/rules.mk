@@ -1,1 +1,4 @@
+VISUALIZER_ENABLE = yes
+ST7565_ENABLE = no
+
 DEBOUNCE_TYPE = sym_eager_pr
