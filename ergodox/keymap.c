@@ -138,10 +138,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+void st7565_task_user(void) {
+    if (!st7565_is_on()) {
+        return;
     }
 
+    st7565_set_cursor(3, 1);
 
-
+    uint16_t r, g, b;
+    switch (get_highest_layer(layer_state)) {
+        case MDIA:
+            r = UINT16_MAX / 5; g = UINT16_MAX / 2; b = UINT16_MAX;
+            st7565_write_P(PSTR("MEDIA"), false);
+            break;
+        case SYMB:
+            r = UINT16_MAX / 2; g = UINT16_MAX; b = UINT16_MAX / 5;
+            st7565_write_P(PSTR("SYMBOLS"), false);
+            break;
+        default:
+            r = UINT16_MAX / 2; g = UINT16_MAX / 2; b = UINT16_MAX / 2;
+            st7565_write_P(PSTR("BASE"), false);
+            break;
     }
 
+    if ((get_mods() & MOD_BIT(KC_LSFT)) || (get_mods() & MOD_BIT(KC_RSFT))) {
+        r = UINT16_MAX; g = UINT16_MAX / 5; b = UINT16_MAX / 5;
+        st7565_write_P(PSTR(" [SFT]"), false);
+    }
+
+    st7565_advance_page(true);
+    ergodox_infinity_lcd_color(r, g, b);
 }
