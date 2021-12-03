@@ -165,21 +165,21 @@ void st7565_task_user(void) {
         return;
     }
 
-    uint16_t r, g, b;
+    uint16_t r = 0, g = 0, b = 0;
     bool shift = (get_mods() & MOD_BIT(KC_LSFT)) || (get_mods() & MOD_BIT(KC_RSFT));
 
     switch (get_highest_layer(layer_state)) {
-        case MDIA:
-            r = UINT16_MAX / 5; g = UINT16_MAX / 2; b = UINT16_MAX; // blue
-            st7565_render_media_logo(shift);
+        case BASE:
+            r = UINT16_MAX / 2; g = UINT16_MAX / 2; b = UINT16_MAX / 2; // white
+            st7565_render_base_logo(shift);
             break;
         case SYMB:
             r = UINT16_MAX / 2; g = UINT16_MAX; b = UINT16_MAX / 5; // green
             st7565_render_symbols_logo(shift);
             break;
-        default:
-            r = UINT16_MAX / 2; g = UINT16_MAX / 2; b = UINT16_MAX / 2; // white
-            st7565_render_base_logo(shift);
+        case MDIA:
+            r = UINT16_MAX / 5; g = UINT16_MAX / 2; b = UINT16_MAX; // blue
+            st7565_render_media_logo(shift);
             break;
     }
 
