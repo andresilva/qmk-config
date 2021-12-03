@@ -2,6 +2,8 @@
 
 #include QMK_KEYBOARD_H
 
+#include "logos.h"
+
 enum layers {
     BASE, // default layer
     SYMB, // symbols layer
@@ -138,34 +140,52 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+void st7565_render_base_logo(bool shift) {
+    if (shift) {
+        st7565_write_raw_P(BASE_LOGO_SHIFT, sizeof(BASE_LOGO_SHIFT));
+    } else {
+        st7565_write_raw_P(BASE_LOGO, sizeof(BASE_LOGO));
+    }
+}
+
+void st7565_render_media_logo(bool shift) {
+    if (shift) {
+        st7565_write_raw_P(MEDIA_LOGO_SHIFT, sizeof(MEDIA_LOGO_SHIFT));
+    } else {
+        st7565_write_raw_P(MEDIA_LOGO, sizeof(MEDIA_LOGO));
+    }
+}
+
+void st7565_render_symbols_logo(bool shift) {
+    st7565_write_raw_P(SYMBOLS_LOGO, sizeof(SYMBOLS_LOGO));
+}
+
 void st7565_task_user(void) {
     if (!st7565_is_on()) {
         return;
     }
 
-    st7565_set_cursor(3, 1);
-
     uint16_t r, g, b;
+    bool shift = (get_mods() & MOD_BIT(KC_LSFT)) || (get_mods() & MOD_BIT(KC_RSFT));
+
     switch (get_highest_layer(layer_state)) {
         case MDIA:
             r = UINT16_MAX / 5; g = UINT16_MAX / 2; b = UINT16_MAX; // blue
-            st7565_write_P(PSTR("MEDIA"), false);
+            st7565_render_media_logo(shift);
             break;
         case SYMB:
             r = UINT16_MAX / 2; g = UINT16_MAX; b = UINT16_MAX / 5; // green
-            st7565_write_P(PSTR("SYMBOLS"), false);
+            st7565_render_symbols_logo(shift);
             break;
         default:
             r = UINT16_MAX / 2; g = UINT16_MAX / 2; b = UINT16_MAX / 2; // white
-            st7565_write_P(PSTR("BASE"), false);
+            st7565_render_base_logo(shift);
             break;
     }
 
-    if ((get_mods() & MOD_BIT(KC_LSFT)) || (get_mods() & MOD_BIT(KC_RSFT))) {
+    if (shift) {
         r = UINT16_MAX; g = UINT16_MAX / 5; b = UINT16_MAX / 5; // red
-        st7565_write_P(PSTR(" [SFT]"), false);
     }
 
-    st7565_advance_page(true);
     ergodox_infinity_lcd_color(r, g, b);
 }
