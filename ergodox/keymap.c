@@ -2,10 +2,6 @@
 
 #include QMK_KEYBOARD_H
 
-#define LCD_BACKLIGHT_IDLE_TIMEOUT 300
-
-static uint32_t idle_timer;
-static bool is_idle;
 enum layers {
     BASE, // default layer
     SYMB, // symbols layer
@@ -142,41 +138,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-void matrix_init_user() {
-    // disable QMK logo animation
-    memset(
-        default_startup_animation.frame_lengths,
-        0,
-        sizeof(default_startup_animation.frame_lengths)
-    );
-}
-
-void matrix_scan_user() {
-    if (is_keyboard_master()) {
-        // check the timer only if the keyboard is not idle
-        if (!is_idle) {
-            if (timer_elapsed32(idle_timer) >= LCD_BACKLIGHT_IDLE_TIMEOUT * 1000) {
-                is_idle = true;
-
-                // disable LCD display
-                visualizer_suspend();
-            }
-        }
-    }
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (is_keyboard_master()) {
-        // reset idle timer on each keypress
-        idle_timer = timer_read32();
-
-        if (is_idle) {
-            is_idle = false;
-
-            // re-enable LCD display
-            visualizer_resume();
-        }
     }
 
-    return true;
+
+
+    }
+
 }
