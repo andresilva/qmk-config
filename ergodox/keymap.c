@@ -148,21 +148,21 @@ void st7565_task_user(void) {
     uint16_t r, g, b;
     switch (get_highest_layer(layer_state)) {
         case MDIA:
-            r = UINT16_MAX / 5; g = UINT16_MAX / 2; b = UINT16_MAX;
+            r = UINT16_MAX / 5; g = UINT16_MAX / 2; b = UINT16_MAX; // blue
             st7565_write_P(PSTR("MEDIA"), false);
             break;
         case SYMB:
-            r = UINT16_MAX / 2; g = UINT16_MAX; b = UINT16_MAX / 5;
+            r = UINT16_MAX / 2; g = UINT16_MAX; b = UINT16_MAX / 5; // green
             st7565_write_P(PSTR("SYMBOLS"), false);
             break;
         default:
-            r = UINT16_MAX / 2; g = UINT16_MAX / 2; b = UINT16_MAX / 2;
+            r = UINT16_MAX / 2; g = UINT16_MAX / 2; b = UINT16_MAX / 2; // white
             st7565_write_P(PSTR("BASE"), false);
             break;
     }
 
     if ((get_mods() & MOD_BIT(KC_LSFT)) || (get_mods() & MOD_BIT(KC_RSFT))) {
-        r = UINT16_MAX; g = UINT16_MAX / 5; b = UINT16_MAX / 5;
+        r = UINT16_MAX; g = UINT16_MAX / 5; b = UINT16_MAX / 5; // red
         st7565_write_P(PSTR(" [SFT]"), false);
     }
 
