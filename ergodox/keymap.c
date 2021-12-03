@@ -2,14 +2,15 @@
 
 #include QMK_KEYBOARD_H
 
-#include <string.h>
-#include "default_animations.h"
-#include "layers.h"
-
 #define LCD_BACKLIGHT_IDLE_TIMEOUT 300
 
 static uint32_t idle_timer;
 static bool is_idle;
+enum layers {
+    BASE, // default layer
+    SYMB, // symbols layer
+    MDIA, // media layer
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
