@@ -5,14 +5,20 @@
 #include "logos.h"
 
 enum layers {
-    BASE, // default layer
-    SYMB, // symbols layer
-    MDIA, // media layer
+    _QWRT, // qwerty layer
+    _CLMK, // colemak-DH layer
+    _SYMB, // symbols layer
+    _MDIA, // media layer
+};
+
+enum custom_keycodes {
+  QWERTY = SAFE_RANGE,
+  COLEMAK,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-// Base layer
+// QWERTY layer
 //
 // ┌─────────┬─────┬─────┬─────┬─────┬─────┬─────┐     ┌─────┬─────┬─────┬─────┬─────┬─────┬─────────┐
 // │  `~     │  1  │  2  │  3  │  4  │  5  │ ESC │     │  ─  │  6  │  7  │  8  │  9  │  0  │     =+  │
@@ -32,13 +38,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                             │ Bsp │ Del ├─────┤     ├─────┤Enter│Space│
 //                             │     │     │PgDn │     │ Down│     │     │
 //                             └─────┴─────┴─────┘     └─────┴─────┴─────┘
-[BASE] = LAYOUT_ergodox(
+[_QWRT] = LAYOUT_ergodox(
     // left hand
     KC_GRV,           KC_1,         KC_2,         KC_3,    KC_4,    KC_5,    KC_ESC,
-    LT(MDIA, KC_TAB), KC_Q,         KC_W,         KC_E,    KC_R,    KC_T,    KC_LBRC,
+    LT(_MDIA, KC_TAB),KC_Q,         KC_W,         KC_E,    KC_R,    KC_T,    KC_LBRC,
     KC_LCTL,          KC_A,         KC_S,         KC_D,    KC_F,    KC_G,
     KC_LSFT,          KC_Z,         KC_X,         KC_C,    KC_V,    KC_B,    LSFT(KC_TAB),
-    MO(SYMB),         MEH_T(KC_NO), ALL_T(KC_NO), KC_LGUI, KC_LALT,
+    MO(_SYMB),        MEH_T(KC_NO), ALL_T(KC_NO), KC_LGUI, KC_LALT,
                                                                     KC_HOME, KC_END,
                                                                              KC_PGUP,
                                                            KC_BSPC, KC_DEL,  KC_PGDN,
@@ -48,7 +54,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_RBRC,          KC_Y,         KC_U,         KC_I,    KC_O,    KC_P,    KC_BSLS,
                       KC_H,         KC_J,         KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_TAB,           KC_N,         KC_M,         KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-                                    KC_RALT,      KC_RGUI, KC_HYPR, KC_MEH,  MO(SYMB),
+                                    KC_RALT,      KC_RGUI, KC_HYPR, KC_MEH,  MO(_SYMB),
+    KC_LEFT,          KC_RGHT,
+    KC_UP,
+    KC_DOWN,          KC_ENT,       KC_SPC
+),
+
+// Colemak-DH layer
+//
+// ┌─────────┬─────┬─────┬─────┬─────┬─────┬─────┐     ┌─────┬─────┬─────┬─────┬─────┬─────┬─────────┐
+// │  `~     │  1  │  2  │  3  │  4  │  5  │ ESC │     │  ─  │  6  │  7  │  8  │  9  │  0  │     =+  │
+// ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┼─────┼─────────┤
+// │Media/Tab│  Q  │  W  │  F  │  P  │  B  │  [  │     │  ]  │  J  │  L  │  U  │  Y  │  ;  │     \│  │
+// ├─────────┼─────┼─────┼─────┼─────┼─────┤     │     │     ├─────┼─────┼─────┼─────┼─────┼─────────┤
+// │  Ctrl   │  A  │  R  │  S  │  T  │  G  ├─────┤     ├─────┤  M  │  N  │  E  │  I  │  O  │     '"  │
+// ├─────────┼─────┼─────┼─────┼─────┼─────┤Shift│     │ Tab ├─────┼─────┼─────┼─────┼─────┼─────────┤
+// │  Shift  │  Z  │  X  │  C  │  D  │  V  │─Tab │     │     │  K  │  H  │  ,  │  .  │  /  │  Shift  │
+// └──┬──────┼─────┼─────┼─────┼─────┼─────┴─────┘     └─────┴─────┼─────┼─────┼─────┼─────┼──────┬──┘
+//    │Symbol│ Meh │Hyper│LGui │LAlt │                             │ RAlt│ RGui│Hyper│ Meh │Symbol│
+//    └──────┴─────┴─────┴─────┴─────┘                             └─────┴─────┴─────┴─────┴──────┘
+//                                   ┌─────┬─────┐     ┌─────┬─────┐
+//                                   │Home │ End │     │ Left│Right│
+//                             ┌─────┼─────┼─────┤     ├─────┼─────┼─────┐
+//                             │     │     │PgUp │     │  Up │     │     │
+//                             │ Bsp │ Del ├─────┤     ├─────┤Enter│Space│
+//                             │     │     │PgDn │     │ Down│     │     │
+//                             └─────┴─────┴─────┘     └─────┴─────┴─────┘
+[_CLMK] = LAYOUT_ergodox(
+    // left hand
+    KC_GRV,           KC_1,         KC_2,         KC_3,    KC_4,    KC_5,    KC_ESC,
+    LT(_MDIA, KC_TAB),KC_Q,         KC_W,         KC_F,    KC_P,    KC_B,    KC_LBRC,
+    KC_LCTL,          KC_A,         KC_R,         KC_S,    KC_T,    KC_G,
+    KC_LSFT,          KC_Z,         KC_X,         KC_C,    KC_D,    KC_V,    LSFT(KC_TAB),
+    MO(_SYMB),        MEH_T(KC_NO), ALL_T(KC_NO), KC_LGUI, KC_LALT,
+                                                                    KC_HOME, KC_END,
+                                                                             KC_PGUP,
+                                                           KC_BSPC, KC_DEL,  KC_PGDN,
+
+    // right hand
+    KC_MINS,          KC_6,         KC_7,         KC_8,    KC_9,    KC_0,    KC_EQL,
+    KC_RBRC,          KC_J,         KC_L,         KC_U,    KC_Y,    KC_SCLN, KC_BSLS,
+                      KC_M,         KC_N,         KC_E,    KC_I,    KC_O,    KC_QUOT,
+    KC_TAB,           KC_K,         KC_H,         KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+                                    KC_RALT,      KC_RGUI, KC_HYPR, KC_MEH,  MO(_SYMB),
     KC_LEFT,          KC_RGHT,
     KC_UP,
     KC_DOWN,          KC_ENT,       KC_SPC
@@ -74,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                             │     │     ├─────┤     ├─────┤Score│     │
 //                             │  +  │  =  │■■■■■│     │■■■■■│  _  │  ─  │
 //                             └─────┴─────┴─────┘     └─────┴─────┴─────┘
-[SYMB] = LAYOUT_ergodox(
+[_SYMB] = LAYOUT_ergodox(
     // left hand
     KC_TRNS,       KC_F1,         KC_F2,   KC_F3,         KC_F4,        KC_F5,   RESET,
     KC_TRNS,       KC_EXLM,       KC_AT,   KC_LCBR,       KC_RCBR,      KC_AMPR, LSFT(KC_COMM),
@@ -101,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ┌─────────┬─────┬─────┬─────┬─────┬─────┬─────┐     ┌─────┬─────┬─────┬─────┬─────┬─────┬─────────┐
 // │         │ F11 │ F12 │ F13 │ F14 │ F15 │ Esc │     │■■■■■│ F16 │ F17 │ F18 │ F19 │ F20 │         │
 // ├─────────┼─────┼─────┼─────┼─────┼─────┼─────┤     ├─────┼─────┼─────┼─────┼─────┼─────┼─────────┤
-// │         │■■■■■│■■■■■│ MUp │■■■■■│VolUp│Wheel│     │Wheel│PScrn│ Home│  Up │ PgUp│ Mail│         │
+// │         │QWRTY│COLMK│ MUp │■■■■■│VolUp│Wheel│     │Wheel│PScrn│ Home│  Up │ PgUp│ Mail│         │
 // ├─────────┼─────┼─────┼─────┼─────┼─────┤ Up  │     │  Up ├─────┼─────┼─────┼─────┼─────┼─────────┤
 // │         │■■■■■│MLeft│MDown│MRght│VolDn├─────┤     ├─────┤NLock│ Left│ Down│Right│MyCom│         │
 // ├─────────┼─────┼─────┼─────┼─────┼─────┤Wheel│     │Wheel├─────┼─────┼─────┼─────┼─────┼─────────┤
@@ -116,10 +164,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                             │Back │ Fwd ├─────┤     ├─────┤     │Pause│
 //                             │     │     │Home │     │VolDn│     │     │
 //                             └─────┴─────┴─────┘     └─────┴─────┴─────┘
-[MDIA] = LAYOUT_ergodox(
+[_MDIA] = LAYOUT_ergodox(
     // left hand
     KC_TRNS, KC_F11,   KC_F12,  KC_F13,   KC_F14,   KC_F15,  KC_ESC,
-    KC_TRNS, KC_NO,    KC_NO,   KC_MS_U,  KC_NO,    KC_VOLU, KC_WH_U,
+    KC_TRNS, QWERTY,   COLEMAK, KC_MS_U,  KC_NO,    KC_VOLU, KC_WH_U,
     KC_TRNS, KC_NO,    KC_MS_L, KC_MS_D,  KC_MS_R,  KC_VOLD,
     KC_TRNS, KC_NO,    KC_NO,   KC_MS_D,  KC_NO,    KC_MUTE, KC_WH_D,
     KC_NO,   KC_NO,    KC_BTN3, KC_BTN1,  KC_BTN2,
@@ -139,6 +187,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case QWERTY:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_QWRT);
+            }
+            return false;
+        case COLEMAK:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_CLMK);
+            }
+            return false;
+    }
+    return true;
+}
 
 void st7565_render_base_logo(bool shift) {
     if (shift) {
@@ -168,19 +232,18 @@ void st7565_task_user(void) {
     uint16_t r = 0, g = 0, b = 0;
     bool shift = (get_mods() & MOD_BIT(KC_LSFT)) || (get_mods() & MOD_BIT(KC_RSFT));
 
-    switch (get_highest_layer(layer_state)) {
-        case BASE:
-            r = UINT16_MAX / 2; g = UINT16_MAX / 2; b = UINT16_MAX / 2; // white
-            st7565_render_base_logo(shift);
-            break;
-        case SYMB:
-            r = UINT16_MAX / 2; g = UINT16_MAX; b = UINT16_MAX / 5; // green
-            st7565_render_symbols_logo(shift);
-            break;
-        case MDIA:
-            r = UINT16_MAX / 5; g = UINT16_MAX / 2; b = UINT16_MAX; // blue
-            st7565_render_media_logo(shift);
-            break;
+    if (IS_LAYER_ON(_SYMB)) {
+        r = UINT16_MAX / 2; g = UINT16_MAX; b = UINT16_MAX / 5; // green
+        st7565_render_symbols_logo(shift);
+    } else if (IS_LAYER_ON(_MDIA)) {
+        r = UINT16_MAX / 5; g = UINT16_MAX / 2; b = UINT16_MAX; // blue
+        st7565_render_media_logo(shift);
+    } else if (IS_LAYER_ON_STATE(default_layer_state, _QWRT)) {
+        r = UINT16_MAX / 2; g = UINT16_MAX / 2; b = UINT16_MAX / 2; // white
+        st7565_render_base_logo(shift);
+    } else if (IS_LAYER_ON_STATE(default_layer_state, _CLMK)) {
+        r = UINT16_MAX / 2; g = UINT16_MAX / 3; b = UINT16_MAX / 2; // pink
+        st7565_render_base_logo(shift);
     }
 
     if (shift) {
